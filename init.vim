@@ -1,7 +1,6 @@
 " PLUGINS
 
 call plug#begin('~/.local/share/nvim/plugged')
-  " Seccion de plugins
   Plug 'dracula/vim' " Tema para neovim
   Plug 'ryanoasis/vim-devicons' " Devicon soportado por nerdtree
   Plug 'SirVer/ultisnips' " Motor de snippets
@@ -19,12 +18,18 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sheerun/vim-polyglot' " Resaltado de texto
   Plug 'tpope/vim-surround' " Facilitar poner quitar cambiar comillas
   Plug 'jiangmiao/auto-pairs' " Autocompleta los signos de agrupacion
+  Plug 'xuyuanp/nerdtree-git-plugin' " Muestra el estado de los archivos en github
+  Plug 'haya14busa/incsearch.vim' " Busqueda incremental mejorada
+  Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+  Plug 'othree/html5.vim', { 'for': 'html' }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 call plug#end()
 
 " PERSONALIZACION
 
 set title " Muestra el nombre del archivo en la ventana dentro de la terminal
-set number " Muesta el numero de lineas
+set number relativenumber " Muesta el numero de lineas
 set mouse=a " Permite la integracion del mouse
 
 set nowrap " No dividir la linea si resulta larga
@@ -76,6 +81,9 @@ let g:mapleader = ' ' " Defenimos la espacio como la tecla lider
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
+" Abrir NerdTree
+map <F2> :NERDTreeToggle<CR> 
+
 nnoremap <leader>s :w<CR> " Guardar el archivo
 nnoremap <leader>e :e $MYVIMRC<CR> " Abrir mi archivo de configuracion
 nnoremap <leader>q :q<CR> " Cerramos el archivo
@@ -122,3 +130,10 @@ let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 
 " Ir a anterior ubicacion con Ctrl + k
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+" Maps requeridos
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+
+" Quitar resaltado luego de buscar
+let g:incsearch#auto_nohlsearch = 1
