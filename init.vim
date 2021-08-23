@@ -11,7 +11,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Motor rapido de comentado de codigo
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'  " Temas para airline
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neco-syntax'  " Fuente general de auto completado
   Plug 'ervandew/supertab' " Permitir navegar entre las resultados
   Plug 'Shougo/echodoc.vim' " Muestra la firma de la funcion
@@ -20,10 +19,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'jiangmiao/auto-pairs' " Autocompleta los signos de agrupacion
   Plug 'xuyuanp/nerdtree-git-plugin' " Muestra el estado de los archivos en github
   Plug 'haya14busa/incsearch.vim' " Busqueda incremental mejorada
-  Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-  Plug 'othree/html5.vim', { 'for': 'html' }
-  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'hail2u/vim-css3-syntax', { 'for': 'css' } " Resalta codigo css
+  Plug 'othree/html5.vim', { 'for': 'html' } " Resalta codigo html5
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' } " Resalta codigo javascript 
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+  Plug 'wokalski/autocomplete-flow' " Autocompleta codigo de javascript
+  " Para los argumentos de la funcion
+  Plug 'Shougo/neosnippet'
+  Plug 'Shougo/neosnippet-snippets'
 call plug#end()
 
 " PERSONALIZACION
@@ -81,6 +84,9 @@ let g:mapleader = ' ' " Defenimos la espacio como la tecla lider
 let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
+" Instalar plugins
+nnoremap <leader>pi :PlugInstall<CR>
+
 " Abrir NerdTree
 map <F2> :NERDTreeToggle<CR> 
 
@@ -107,16 +113,6 @@ let g:airline_powerline_fonts = 1
 
 set noshowmode  " No mostrar el modo actual (ya lo muestra la barra de estado)
 
-" Activar deoplete al iniciar Neovim
-let g:deoplete#enable_at_startup = 1
-
-" Cerrar automaticamente la ventana de vista previa (donde se muestra documentación, si existe)
-augroup deopleteCompleteDoneAu
-  autocmd!
-  autocmd CompleteDone * silent! pclose!
-augroup END
-
-" Invertir direccion de navegacion (de arriba a abajo)
 let g:SuperTabDefaultCompletionType = '<c-n>'
 
 " Activar echodoc al iniciar Neovim
@@ -137,3 +133,7 @@ map ?  <Plug>(incsearch-backward)
 
 " Quitar resaltado luego de buscar
 let g:incsearch#auto_nohlsearch = 1
+
+" Neosnippet
+let g:neosnippet#enable_completed_snippet = 1
+let g:autocomplete_flow#insert_paren_after_function = 0
