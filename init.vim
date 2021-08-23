@@ -5,9 +5,9 @@ set mouse=a " Permite la integracion del mouse
 set nowrap " No dividir la linea si resulta larga
 
 set cursorline " Resalta la linea actual
-set colorcolumn=120 " Muestra la columna límite a 120 caracteres
 
 set hidden " Permitir cambios de buffer sin tener que guardarlos
+" set colorcolumn=120 " Muestra la columna limite
 
 set ignorecase " Ignorar mayusculas para realizar una busqueda
 set smartcase " No ignorar mayúsculas si la palabra a buscar contiene mayúsculas
