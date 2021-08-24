@@ -27,6 +27,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Para los argumentos de la funcion
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
+  Plug 'tpope/vim-eunuch' " Provee comandos de linux
+  Plug 'xuyuanp/nerdtree-git-plugin' " Muestra el estado de los archivos en NerdTree
+  Plug 'w0rp/ale' " Analizador estatico de codigo
+  Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " PERSONALIZACION
@@ -77,6 +82,7 @@ set clipboard=unnamedplus " Usar el portapapeles del sistema
 
 " COMANDOS
 
+let g:coc_global_extensions = ['coc-tsserver']
 let g:NERDTreeChDirMode = 2 " Cambia al directorio actual al nodo padre
 let g:mapleader = ' ' " Defenimos la espacio como la tecla lider
 
@@ -90,9 +96,14 @@ nnoremap <leader>pi :PlugInstall<CR>
 " Abrir NerdTree
 map <F2> :NERDTreeToggle<CR> 
 
+" Cambiar entre buffers
+nnoremap <leader>n :bn<CR> " Buffer siguiente
+nnoremap <leader>b :bp <CR> " Buffer anterior
+
 nnoremap <leader>s :w<CR> " Guardar el archivo
 nnoremap <leader>e :e $MYVIMRC<CR> " Abrir mi archivo de configuracion
 nnoremap <leader>q :q<CR> " Cerramos el archivo
+nnoremap <leader>qf :q!<CR> " Cerramos el archivo de manera forzada
 
 " Usar <leader> + c para copiar
 vnoremap <leader>c " + c
@@ -137,3 +148,8 @@ let g:incsearch#auto_nohlsearch = 1
 " Neosnippet
 let g:neosnippet#enable_completed_snippet = 1
 let g:autocomplete_flow#insert_paren_after_function = 0
+
+" Mostrar mejor mensajes de error
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
